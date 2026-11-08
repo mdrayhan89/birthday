@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Faria ❤️ | For My Dearest Picchi</title>
+  
+  <!-- Tailwind CSS & FontAwesome & Canvas Confetti -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;600;700&family=Charm:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#070510',
+            roseGold: '#e8b4b8',
+            deepRose: '#c97582',
+            softGold: '#f7d070',
+            glassDark: 'rgba(15, 10, 25, 0.75)'
+          },
+          fontFamily: {
+            bangla: ['"Anek Bangla"', 'sans-serif'],
+            handwritten: ['"Charm"', 'cursive'],
+            serif: ['"Playfair Display"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Anek Bangla', sans-serif;
+      background-color: #070510;
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+
+    /* Soft Glow & Glassmorphism */
+    .glass-panel {
+      background: rgba(18, 12, 32, 0.65);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid rgba(232, 180, 184, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(201, 117, 130, 0.1);
+    }
+
+    .glow-text-rose {
+      text-shadow: 0 0 15px rgba(232, 180, 184, 0.6), 0 0 30px rgba(201, 117, 130, 0.4);
+    }
+
+    .glow-text-gold {
+      text-shadow: 0 0 15px rgba(247, 208, 112, 0.6);
+    }
+
+    /* Smooth Floating Card Effect */
+    .memory-card {
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    .memory-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(232, 180, 184, 0.6);
+      box-shadow: 0 15px 35px rgba(201, 117, 130, 0.3);
+    }
+
+    /* Subtle Heartbeat Animation */
+    @keyframes heartbeatSlow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    .animate-heartbeat {
+      animation: heartbeatSlow 2.5s infinite ease-in-out;
+    }
+
+    /* Candle Flame Flicker */
+    @keyframes romanticFlicker {
+      0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+      25% { transform: scale(1.1) rotate(1deg); opacity: 1; }
+      50% { transform: scale(0.95) rotate(-2deg); opacity: 0.85; }
+      75% { transform: scale(1.05) rotate(2deg); opacity: 0.98; }
+    }
+    .flame-animation {
+      animation: romanticFlicker 1.2s infinite ease-in-out;
+      transform-origin: bottom center;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #070510; }
+    ::-webkit-scrollbar-thumb { background: #c97582; border-radius: 10px; }
+  </style>
+</head>
+<body class="relative min-h-screen select-none">
+
+  <!-- Background Particle Stars Canvas -->
+  <canvas id="starfieldCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Sound Toggle Floating Pill -->
+  <div class="fixed top-6 right-6 z-50">
+    <button id="audioToggleBtn" onclick="toggleRomanticBGM()" class="glass-panel px-4 py-2.5 rounded-full flex items-center space-x-3 text-roseGold hover:text-white border border-roseGold/30 transition-all duration-300 shadow-2xl">
+      <i id="audioIcon" class="fas fa-heart text-rose-400 animate-pulse"></i>
+      <span id="audioText" class="font-handwritten text-sm sm:text-base tracking-wide">Play Piano Melody 🎹</span>
+    </button>
+  </div>
+
+  <!-- ACT 1: STARLIGHT ENTRANCE MODAL -->
+  <div id="entranceModal" class="fixed inset-0 z-50 flex items-center justify-center bg-midnight/95 backdrop-blur-3xl p-4 transition-all duration-1000">
+    <div class="glass-panel max-w-lg w-full p-8 sm:p-10 rounded-3xl text-center relative border border-roseGold/30 shadow-2xl">
+      
+      <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-rose-500/10 flex items-center justify-center border border-roseGold/40 animate-heartbeat">
+        <i class="fas fa-headphones text-3xl text-roseGold"></i>
+      </div>
+
+      <p class="font-handwritten text-xl text-roseGold mb-1">A Special Experience for Faria</p>
+      <h1 class="text-3xl sm:text-4xl font-extrabold font-serif text-white mb-4 tracking-tight glow-text-rose">
+        আমার "পিচ্চি"র জন্মদিনে... ❤️
+      </h1>
+      
+      <p class="text-slate-300 text-sm sm:text-base font-bangla leading-relaxed mb-8">
+        হেডফোন দুটি কানে গুজে নাও, আশেপাশের সবকিছু ভুলে যাও। তোমার জন্য তৈরি করা এই ছোট মিষ্টি জগতের গভীরে প্রবেশ করতে নিচের বাটনটিতে টাচ করো... ✨
+      </p>
+
+      <button onclick="enterStarlightWorld()" class="w-full py-4 bg-gradient-to-r from-deepRose via-rose-500 to-roseGold text-white font-bold rounded-2xl shadow-xl shadow-rose-900/40 hover:scale-[1.02] active:scale-95 transition-all font-bangla text-lg">
+        আমাদের সুন্দর জগতে প্রবেশ করো 🌹
+      </button>
+
+      <div class="mt-5 text-xs text-roseGold/60 font-bangla">
+        নিবেদনে: যে তোমাকে সবচেয়ে বেশি ভালোবাসে 💖
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MAIN EXPERIENCE CONTAINER -->
+  <div id="mainContent" class="opacity-0 transition-opacity duration-1000 relative z-10 max-w-5xl mx-auto px-4 pt-12 pb-24">
+
+    <!-- HERO SECTION -->
+    <header class="text-center mb-20 relative">
+      <div class="inline-flex items-center space-x-2 px-6 py-2 rounded-full glass-panel text-roseGold text-xs sm:text-sm font-handwritten tracking-widest uppercase mb-6 border border-roseGold/30">
+        <i class="fas fa-sparkles text-softGold"></i>
+        <span>Happy Birthday Faria • My Sweet Picchi</span>
+      </div>
+
+      <h1 class="text-5xl sm:text-7xl font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-roseGold via-rose-200 to-softGold tracking-tight glow-text-rose mb-4">
+        Happy Birthday, Picchi! 🌸
+      </h1>
+      <p class="text-xl sm:text-3xl font-bangla font-semibold text-roseGold">
+        শুভ জন্মদিন আমার ভালোবাসার রাজকন্যা! 🥰❤️
+      </p>
+      <p class="mt-4 text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-bangla">
+        তোমার হাসির প্রতিটি ঝলক আমার জীবনকে রঙিন করে তোলে। তোমার এই বিশেষ দিনে শুধু কোড নয়, আমার হৃদয়ের অনুভূতির প্রতিটি কণা সাজিয়ে দিয়েছি এখানে...
+      </p>
+    </header>
+
+    <!-- ACT 2: TIME CAPSULE - DEEP EMOTIONAL LETTERS WITH PHOTOS -->
+    <section class="mb-24">
+      <div class="text-center mb-12">
+        <span class="text-xs font-handwritten text-softGold tracking-widest uppercase">Act II • Memories & Feelings</span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-roseGold glow-text-rose mt-1">
+          💌 অনুভূতির টাইম ক্যাপসুল
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm font-bangla mt-2">
+          কার্ডগুলোতে ক্লিক করে আমার মনের গোপন অনুভূতিগুলো উন্মোচন করো ✨
+        </p>
+      </div>
+
+      <!-- Grid of 6 Interactive Memory Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Node 1 -->
+        <div class="memory-card glass-panel p-6 rounded-3xl border border-roseGold/20 cursor-pointer" onclick="toggleLetter('letter1')">
+          <div class="flex items-center space-x-4 mb-4">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border border-roseGold/40 shrink-0">
+              <img src="1000022241.jpg" alt="Faria" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/c97582/ffffff?text=Picchi'">
+            </div>
+            <div>
+              <span class="text-xs font-handwritten text-softGold">Memory #1</span>
+              <h3 class="text-lg font-bold font-bangla text-rose-200">তোমার ওই প্রথম চাহনি... 💖</h3>
+            </div>
+          </div>
+          <p class="text-slate-300 text-sm font-bangla leading-relaxed line-clamp-2" id="preview1">
+            "যখন সাদা হিজাবে তোমাকে প্রথম দেখেছিলাম, মনে হয়েছিল পৃথিবীর সমস্ত স্নিগ্ধতা যেন তোমার মুখে..."
+          </p>
+          <div id="letter1" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
+            "যখন হিজাব পরা সাজে তোমাকে প্রথম দেখেছিলাম, মনে হয়েছিল পৃথিবীর সমস্ত স্নিগ্ধতা যেন বিধাতা তোমার মুখে ঢেলে দিয়েছেন। তুমি শুধুই ফারিয়া নও, তুমি আমার জীবনের সেই শান্তি, যা আমি প্রতিদিন খুঁজে ফিরি। শুভ জন্মদিন পিচ্চি!"
+          </div>
+        </div>
+
+        <!-- Node 2 -->
+        <div class="memory-card glass-panel p-6 rounded-3xl border border-roseGold/20 cursor-pointer" onclick="toggleLetter('letter2')">
+          <div class="flex items-center space-x-4 mb-4">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border border-roseGold/40 shrink-0">
+              <img src="1000022237.jpg" alt="Faria" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/c97582/ffffff?text=Picchi'">
+            </div>
+            <div>
+              <span class="text-xs font-handwritten text-softGold">Memory #2</span>
+              <h3 class="text-lg font-bold font-bangla text-rose-200">ফুলের চেয়েও নিষ্পাপ হাসি 🌸</h3>
+            </div>
+          </div>
+          <p class="text-slate-300 text-sm font-bangla leading-relaxed line-clamp-2">
+            "চুলে ওই ছোট্ট ফুলটা গুঁজে যখন তুমি হাসো, তখন মনে হয় আমার পুরো পৃথিবীটা বুঝি থেমে গেছে..."
+          </p>
+          <div id="letter2" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
+            "মাথায় ওই সুন্দর ফুলটা গুঁজে যখন তুমি মুচকি হাসো, আমার মনে হয় পৃথিবীর যেকোনো ফুলের চেয়েও সুন্দর তোমার এই রূপ। তোমার মিষ্টি অভিমান আর হাসি আমার সারাদিনের ক্লান্তি দূর করে দেয়।"
+          </div>
+        </div>
+
+        <!-- Node 3 -->
+        <div class="memory-card glass-panel p-6 rounded-3xl border border-roseGold/20 cursor-pointer" onclick="toggleLetter('letter3')">
+          <div class="flex items-center space-x-4 mb-4">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border border-roseGold/40 shrink-0">
+              <img src="1000022238.jpg" alt="Faria" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/c97582/ffffff?text=Picchi'">
+            </div>
+            <div>
+              <span class="text-xs font-handwritten text-softGold">Memory #3</span>
+              <h3 class="text-lg font-bold font-bangla text-rose-200">রেশমি চুল আর জাদুকরী রূপ ✨</h3>
+            </div>
+          </div>
+          <p class="text-slate-300 text-sm font-bangla leading-relaxed line-clamp-2">
+            "খোলা চুলে তোমাকে দেখলে মনে হয় কোনো কাব্যগ্রন্থের পাতা থেকে নেমে আসা এক রাজকন্যা..."
+          </p>
+          <div id="letter3" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
+            "তোমার রেশমি কালো চুল আর মায়াবী সাজের সামনে যেকোনো কবিতা ফিকে হয়ে যায়। আমি হাজার বছর ধরে শুধু তোমার এই চোখ দুটোতেই হারিয়ে যেতে পারি, পিচ্চি।"
+          </div>
+        </div>
+
+        <!-- Node 4 -->
+        <div class="memory-card glass-panel p-6 rounded-3xl border border-roseGold/20 cursor-pointer" onclick="toggleLetter('letter4')">
+          <div class="flex items-center space-x-4 mb-4">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border border-roseGold/40 shrink-0">
+              <img src="1000022239.jpg" alt="Faria" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/c97582/ffffff?text=Picchi'">
+            </div>
+            <div>
+              <span class="text-xs font-handwritten text-softGold">Memory #4</span>
+              <h3 class="text-lg font-bold font-bangla text-rose-200">সবচেয়ে কিউট 'পিচ্চি' এক্সপ্রেশন 😍</h3>
+            </div>
+          </div>
+          <p class="text-slate-300 text-sm font-bangla leading-relaxed line-clamp-2">
+            "তোমার এই অবুঝ এক্সপ্রেশনগুলোই আমাকে বারবার নতুন করে তোমার প্রেমে ফেলে..."
+          </p>
+          <div id="letter4" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
+            "তোমাকে ভালোবেসে যে 'পিচ্চি' বলে ডাকি, তার আসল কারণ তোমার এই নিষ্পাপ বাচ্চা বাচ্চা আচরণগুলো। সারাজীবন আমার এই কিউট পিচ্চি হয়েই থেকো, ঠিক আছে?"
+          </div>
+        </div>
+
+        <!-- Node 5 -->
+        <div class="memory-card glass-panel p-6 rounded-3xl border border-roseGold/20 cursor-pointer" onclick="toggleLetter('letter5')">
+          <div class="flex items-center space-x-4 mb-4">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border border-roseGold/40 shrink-0">
+              <img src="1000022240.jpg" alt="Faria" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/c97582/ffffff?text=Picchi'">
+            </div>
+            <div>
+              <span class="text-xs font-handwritten text-softGold">Memory #5</span>
+              <h3 class="text-lg font-bold font-bangla text-rose-200">শান্ত মায়াবী দৃষ্টি 🤍</h3>
+            </div>
+          </div>
+          <p class="text-slate-300 text-sm font-bangla leading-relaxed line-clamp-2">
+            "সাদা দুপাট্টায় যখন আলতো করে তাকাও, মনে হয় সৃষ্টিকর্তার সবচেয়ে সুন্দর সৃষ্টি তুমি..."
+          </p>
+          <div id="letter5" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
+            "তোমার চোখে যে এক অদ্ভুত মায়া আছে, তা পৃথিবীর অন্য কোথাও নেই। কোনো শব্দ বা ভাষা দিয়ে বোঝানো সম্ভব নয় আমি তোমাকে ঠিক কতটা নিজের ভাবি।"
+          </div>
+        </div>
+
+        <!-- Node 6 -->
+        <div class="memory-card glass-panel p-6 rounded-3xl border border-roseGold/20 cursor-pointer" onclick="toggleLetter('letter6')">
+          <div class="flex items-center space-x-4 mb-4">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border border-roseGold/40 shrink-0">
+              <img src="1000022245.jpg" alt="Faria" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/c97582/ffffff?text=Picchi'">
+            </div>
+            <div>
+              <span class="text-xs font-handwritten text-softGold">Memory #6</span>
+              <h3 class="text-lg font-bold font-bangla text-rose-200">প্রকৃতির মাঝে আমার স্বর্গ 🌿</h3>
+            </div>
+          </div>
+          <p class="text-slate-300 text-sm font-bangla leading-relaxed line-clamp-2">
+            "খোলা আকাশের নিচে দূর দিগন্তে তোমার চাহনি—যেন এক নিস্তব্ধ ভালোবাসার গল্প..."
+          </p>
+          <div id="letter6" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
+            "প্রকৃতির মাঝে যখন তুমি শান্ত মনে তাকাও, মনে হয় পুরো পৃথিবীটাই থমকে গেছে। আগামী প্রতিটি জন্মদিনে আমি চাই তোমার এই হাত দুটো ধরে এভাবেই প্রকৃতির সৌন্দর্য উপভোগ করতে।"
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACT 3: HEARTBEAT CONSTELLATION MINI-GAME -->
+    <section class="mb-24 glass-panel rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden border border-roseGold/30">
+      <div class="mb-6">
+        <span class="text-xs font-handwritten text-softGold tracking-widest uppercase">Act III • Heartbeat Constellation</span>
+        <h2 class="text-2xl sm:text-4xl font-serif text-roseGold glow-text-rose mt-1">
+          🌌 তারামণ্ডলে হৃদয় সংযোগ
+        </h2>
+        <p class="text-slate-300 text-xs sm:text-sm font-bangla mt-2 max-w-md mx-auto">
+          নক্ষত্রগুলোতে স্পর্শ করে হৃদয়ের সংযোগ তৈরি করো! (নক্ষত্রগুলোতে পরপর ক্লিক করো)
+        </p>
+      </div>
+
+      <!-- Constellation Interactive Canvas -->
+      <div class="relative max-w-lg mx-auto">
+        <canvas id="constellationCanvas" width="450" height="320" class="w-full h-auto bg-black/40 rounded-2xl border border-roseGold/20 cursor-pointer shadow-inner"></canvas>
+        <div id="constellationWinMsg" class="hidden absolute inset-0 bg-midnight/90 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center p-6 text-center">
+          <div class="w-16 h-16 rounded-full bg-rose-500/20 flex items-center justify-center mb-3 animate-heartbeat">
+            <i class="fas fa-heart text-3xl text-rose-400"></i>
+          </div>
+          <h3 class="text-2xl font-serif font-bold text-roseGold">Heart Connected! ❤️</h3>
+          <p class="text-slate-300 text-xs sm:text-sm font-bangla mt-2">
+            আমার প্রতিটি হৃদস্পন্দন শুধু তোমার নামেই চলে, পিচ্চি!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACT 4: VIRTUAL CANDLE WISH CEREMONY -->
+    <section class="mb-24 glass-panel rounded-3xl p-8 sm:p-12 text-center relative border border-roseGold/30">
+      <div class="mb-8">
+        <span class="text-xs font-handwritten text-softGold tracking-widest uppercase">Act IV • Birthday Wish Ceremony</span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-roseGold glow-text-rose mt-1">
+          🎂 মোমবাতি নেভাও এবং উইশ করো
+        </h2>
+        <p class="text-slate-300 text-sm font-bangla mt-2">
+          চোখ বন্ধ করে একটি মিষ্টি ইচ্ছে পূরণ মানো, তারপর জ্বলন্ত আলোটিতে ক্লিক করো...
+        </p>
+      </div>
+
+      <!-- Elegant Minimal Candle Cake SVG -->
+      <div class="relative w-48 h-56 mx-auto flex flex-col items-center justify-end cursor-pointer group" onclick="blowRomanticCandle()">
+        
+        <!-- Glowing Flame -->
+        <div id="candleFlame" class="flame-animation transition-all duration-700 z-20 mb-1">
+          <svg width="28" height="42" viewBox="0 0 28 42">
+            <path d="M14 0 C22 14 28 22 14 42 C0 22 6 14 14 0 Z" fill="#f7d070" />
+            <path d="M14 8 C19 17 22 23 14 36 C6 23 9 17 14 8 Z" fill="#e8b4b8" />
+          </svg>
+        </div>
+
+        <!-- Smoke Effect -->
+        <div id="smokeEffect" class="opacity-0 transition-opacity duration-1000 mb-2 z-20">
+          <i class="fas fa-cloud text-roseGold/60 text-2xl animate-pulse"></i>
+        </div>
+
+        <!-- Candle Body -->
+        <div class="w-4 h-16 bg-gradient-to-b from-rose-200 via-roseGold to-deepRose rounded-t-sm shadow-lg z-10 border border-white/20"></div>
+
+        <!-- Cake Tier -->
+        <div class="w-44 h-16 bg-gradient-to-r from-deepRose via-roseGold to-deepRose rounded-t-2xl relative shadow-xl z-10 border-t-2 border-rose-200/50 flex items-center justify-around px-4">
+          <span class="text-lg text-rose-100">🌸</span>
+          <span class="text-lg text-rose-100">✨</span>
+          <span class="text-lg text-rose-100">🌸</span>
+        </div>
+
+        <!-- Plate -->
+        <div class="w-56 h-3 bg-gradient-to-r from-roseGold via-white to-roseGold rounded-full shadow-2xl"></div>
+      </div>
+
+      <div class="mt-8">
+        <button id="wishBtn" onclick="blowRomanticCandle()" class="px-8 py-3.5 bg-gradient-to-r from-deepRose via-rose-500 to-roseGold text-white font-bold rounded-full shadow-xl shadow-rose-900/40 hover:scale-105 active:scale-95 transition-all font-bangla">
+          🕯️ মোমবাতিটি নিভিয়ে সোনালী আলো ছড়াও 🎇
+        </button>
+      </div>
+
+      <!-- Secret Deep Wish Letter revealed after candle blow -->
+      <div id="secretWishLetter" class="hidden mt-10 p-6 sm:p-8 bg-black/50 rounded-2xl border border-roseGold/30 text-roseGold font-bangla text-base sm:text-lg leading-relaxed text-center max-w-2xl mx-auto shadow-2xl">
+        <i class="fas fa-quote-left text-3xl text-roseGold/30 mb-2 block"></i>
+        "আল্লাহ যেন তোমার জীবনকে সবসময় শান্তিতে, সুখে আর ভালোবাসায় ভরিয়ে রাখেন। তোমার মুখে যেন সারাজীবন এই অবুঝ মিষ্টি হাসিটা অমলিন থাকে। শুভ জন্মদিন আমার সবচেয়ে প্রিয় 'পিচ্চি'! সারাজীবন তোমার পাশে থাকতে চাই। ❤️"
+      </div>
+    </section>
+
+    <!-- ACT 5: FLOATING 3D POLAROID GALLERY -->
+    <section class="mb-16">
+      <div class="text-center mb-12">
+        <span class="text-xs font-handwritten text-softGold tracking-widest uppercase">Act V • Photo Keepsakes</span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-roseGold glow-text-rose mt-1">
+          📸 ফারিয়ার পোলারয়েড অ্যালবাম
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm font-bangla mt-2">
+          ছবিগুলো বড় করে দেখতে স্পর্শ করো ✨
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        
+        <!-- Polaroid 1 -->
+        <div class="glass-panel p-4 rounded-3xl border border-roseGold/30 cursor-pointer memory-card" onclick="openPhotoModal('1000022241.jpg', 'আমার হিজাবী সুন্দরী পিচ্চি ❤️')">
+          <div class="h-72 w-full rounded-2xl overflow-hidden mb-3 bg-black">
+            <img src="1000022241.jpg" alt="Faria Photo 1" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=Faria+Photo+1'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">My Princess Faria ✨</p>
+        </div>
+
+        <!-- Polaroid 2 -->
+        <div class="glass-panel p-4 rounded-3xl border border-roseGold/30 cursor-pointer memory-card" onclick="openPhotoModal('1000022237.jpg', 'ফুলের স্পর্শে মিষ্টি হাসি 🌸')">
+          <div class="h-72 w-full rounded-2xl overflow-hidden mb-3 bg-black">
+            <img src="1000022237.jpg" alt="Faria Photo 2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=Faria+Photo+2'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">Pure Elegance 🌸</p>
+        </div>
+
+        <!-- Polaroid 3 -->
+        <div class="glass-panel p-4 rounded-3xl border border-roseGold/30 cursor-pointer memory-card" onclick="openPhotoModal('1000022238.jpg', 'রেশমি চুলের অপরূপ সাজ 💖')">
+          <div class="h-72 w-full rounded-2xl overflow-hidden mb-3 bg-black">
+            <img src="1000022238.jpg" alt="Faria Photo 3" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=Faria+Photo+3'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">Angel's Grace 💖</p>
+        </div>
+
+        <!-- Polaroid 4 -->
+        <div class="glass-panel p-4 rounded-3xl border border-roseGold/30 cursor-pointer memory-card" onclick="openPhotoModal('1000022239.jpg', 'কিউট এক্সপ্রেশন 😍')">
+          <div class="h-72 w-full rounded-2xl overflow-hidden mb-3 bg-black">
+            <img src="1000022239.jpg" alt="Faria Photo 4" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=Faria+Photo+4'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">My Dearest Picchi 🥰</p>
+        </div>
+
+        <!-- Polaroid 5 -->
+        <div class="glass-panel p-4 rounded-3xl border border-roseGold/30 cursor-pointer memory-card" onclick="openPhotoModal('1000022240.jpg', 'সাদা হিজাবে স্নিগ্ধতা 🤍')">
+          <div class="h-72 w-full rounded-2xl overflow-hidden mb-3 bg-black">
+            <img src="1000022240.jpg" alt="Faria Photo 5" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=Faria+Photo+5'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">Peace & Purity 🤍</p>
+        </div>
+
+        <!-- Polaroid 6 -->
+        <div class="glass-panel p-4 rounded-3xl border border-roseGold/30 cursor-pointer memory-card" onclick="openPhotoModal('1000022245.jpg', 'প্রকৃতির মাঝে শান্ত চাহনি 🌿')">
+          <div class="h-72 w-full rounded-2xl overflow-hidden mb-3 bg-black">
+            <img src="1000022245.jpg" alt="Faria Photo 6" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=Faria+Photo+6'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">Nature's Melody 🌿</p>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FULLSCREEN PHOTO MODAL -->
+  <div id="photoModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl hidden flex flex-col items-center justify-center p-4">
+    <button onclick="closePhotoModal()" class="absolute top-6 right-6 text-roseGold hover:text-white text-3xl transition-colors">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="max-w-3xl max-h-[80vh] rounded-2xl overflow-hidden border border-roseGold/40 shadow-2xl">
+      <img id="modalPhotoImg" src="" alt="Faria Big" class="max-w-full max-h-[75vh] object-contain">
+    </div>
+    <p id="modalPhotoCaption" class="text-roseGold font-bangla text-xl font-semibold mt-4 text-center"></p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-slate-500 text-xs sm:text-sm py-8 relative z-10 border-t border-roseGold/10 font-bangla">
+    <p>সারা জীবনের গভীর ভালোবাসা দিয়ে তৈরি • শুধু আমার "পিচ্চি"র জন্য ❤️</p>
+  </footer>
+
+  <script>
+    /* ===================================================
+       1. STARFIELD BACKGROUND CANVAS
+       =================================================== */
+    const starCanvas = document.getElementById('starfieldCanvas');
+    const sCtx = starCanvas.getContext('2d');
+    let stars = [];
+
+    function resizeStarfield() {
+      starCanvas.width = window.innerWidth;
+      starCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeStarfield);
+    resizeStarfield();
+
+    class Star {
+      constructor() {
+        this.x = Math.random() * starCanvas.width;
+        this.y = Math.random() * starCanvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.alpha = Math.random() * 0.8 + 0.2;
+        this.speed = Math.random() * 0.02 + 0.005;
+      }
+      update() {
+        this.alpha += Math.sin(Date.now() * this.speed) * 0.01;
+      }
+      draw() {
+        sCtx.save();
+        sCtx.globalAlpha = Math.abs(this.alpha);
+        sCtx.fillStyle = '#e8b4b8';
+        sCtx.beginPath();
+        sCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        sCtx.fill();
+        sCtx.restore();
+      }
+    }
+
+    for (let i = 0; i < 90; i++) stars.push(new Star());
+
+    function animateStars() {
+      sCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+      stars.forEach(s => { s.update(); s.draw(); });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+
+    /* ===================================================
+       2. STARLIGHT ENTRANCE
+       =================================================== */
+    function enterStarlightWorld() {
+      toggleRomanticBGM();
+      document.getElementById('entranceModal').classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('mainContent').classList.remove('opacity-0');
+      triggerHeartConfetti();
+    }
+
+    /* ===================================================
+       3. INTERACTIVE TIME CAPSULE LETTERS
+       =================================================== */
+    function toggleLetter(id) {
+      const elem = document.getElementById(id);
+      if (elem.classList.contains('hidden')) {
+        elem.classList.remove('hidden');
+        playSoftTone(440);
+      } else {
+        elem.classList.add('hidden');
+      }
+    }
+
+    /* ===================================================
+       4. CONSTELLATION MINI GAME
+       =================================================== */
+    const cCanvas = document.getElementById('constellationCanvas');
+    const cCtx = cCanvas.getContext('2d');
+    const points = [
+      { x: 225, y: 190, connected: false },
+      { x: 175, y: 130, connected: false },
+      { x: 140, y: 80, connected: false },
+      { x: 190, y: 60, connected: false },
+      { x: 225, y: 100, connected: false },
+      { x: 260, y: 60, connected: false },
+      { x: 310, y: 80, connected: false },
+      { x: 275, y: 130, connected: false }
+    ];
+    let connectedCount = 0;
+
+    function drawConstellation() {
+      cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+      
+      // Draw Lines
+      cCtx.strokeStyle = 'rgba(232, 180, 184, 0.6)';
+      cCtx.lineWidth = 2;
+      cCtx.beginPath();
+      let started = false;
+      points.forEach(p => {
+        if (p.connected) {
+          if (!started) { cCtx.moveTo(p.x, p.y); started = true; }
+          else { cCtx.lineTo(p.x, p.y); }
+        }
+      });
+      cCtx.stroke();
+
+      // Draw Star Nodes
+      points.forEach((p, i) => {
+        cCtx.save();
+        cCtx.fillStyle = p.connected ? '#f7d070' : '#e8b4b8';
+        cCtx.shadowBlur = p.connected ? 15 : 5;
+        cCtx.shadowColor = '#f7d070';
+        cCtx.beginPath();
+        cCtx.arc(p.x, p.y, p.connected ? 7 : 5, 0, Math.PI * 2);
+        cCtx.fill();
+        cCtx.restore();
+      });
+    }
+
+    cCanvas.addEventListener('click', (e) => {
+      const rect = cCanvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      points.forEach(p => {
+        const dist = Math.hypot(p.x - clickX, p.y - clickY);
+        if (dist < 20 && !p.connected) {
+          p.connected = true;
+          connectedCount++;
+          playSoftTone(300 + connectedCount * 50);
+          drawConstellation();
+
+          if (connectedCount === points.length) {
+            setTimeout(() => {
+              document.getElementById('constellationWinMsg').classList.remove('hidden');
+              triggerHeartConfetti();
+            }, 400);
+          }
+        }
+      });
+    });
+
+    drawConstellation();
+
+    /* ===================================================
+       5. CANDLE BLOW & CONFETTI
+       =================================================== */
+    let isBlown = false;
+    function blowRomanticCandle() {
+      const flame = document.getElementById('candleFlame');
+      const smoke = document.getElementById('smokeEffect');
+      const btn = document.getElementById('wishBtn');
+      const letter = document.getElementById('secretWishLetter');
+
+      if (!isBlown) {
+        flame.classList.add('opacity-0', 'scale-0');
+        smoke.classList.remove('opacity-0');
+        btn.innerText = "✨ মোমবাতিটি পুনরায় জ্বালাও 🕯️";
+        letter.classList.remove('hidden');
+        isBlown = true;
+        playSoftTone(600);
+        triggerHeartConfetti();
+      } else {
+        flame.classList.remove('opacity-0', 'scale-0');
+        smoke.classList.add('opacity-0');
+        btn.innerText = "🕯️ মোমবাতিটি নিভিয়ে সোনালী আলো ছড়াও 🎇";
+        letter.classList.add('hidden');
+        isBlown = false;
+      }
+    }
+
+    function triggerHeartConfetti() {
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#e8b4b8', '#c97582', '#f7d070']
+      });
+    }
+
+    /* ===================================================
+       6. PHOTO MODAL
+       =================================================== */
+    function openPhotoModal(src, caption) {
+      document.getElementById('modalPhotoImg').src = src;
+      document.getElementById('modalPhotoCaption').innerText = caption;
+      document.getElementById('photoModal').classList.remove('hidden');
+      playSoftTone(400);
+    }
+    function closePhotoModal() {
+      document.getElementById('photoModal').classList.add('hidden');
+    }
+
+    /* ===================================================
+       7. ROMANTIC PIANO SYNTHESIZER
+       =================================================== */
+    let audioCtx = null;
+    let isBgmPlaying = false;
+    let bgmTimer = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playSoftTone(freq) {
+      try {
+        getAudioContext();
+        let osc = audioCtx.createOscillator();
+        let gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.6);
+      } catch(e){}
+    }
+
+    // Soft Romantic Piano Melody Sequence
+    const pianoMelody = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63, 293.66, 349.23, 440.00, 523.25, 440.00, 349.23];
+    function toggleRomanticBGM() {
+      getAudioContext();
+      const txt = document.getElementById('audioText');
+      if (!isBgmPlaying) {
+        isBgmPlaying = true;
+        txt.innerText = "Mute Piano Melody 🎵";
+        let step = 0;
+        bgmTimer = setInterval(() => {
+          if (!isBgmPlaying) return;
+          playSoftTone(pianoMelody[step % pianoMelody.length]);
+          step++;
+        }, 600);
+      } else {
+        isBgmPlaying = false;
+        clearInterval(bgmTimer);
+        txt.innerText = "Play Piano Melody 🎹";
+      }
+    }
+  </script>
+</body>
+</html>
