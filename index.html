@@ -738,8 +738,13 @@
       } catch(e){}
     }
 
-    // Soft Romantic Piano Melody Sequence
-    const pianoMelody = [261.63, 329.63, 392.00, 523.25, 392.00, 329.63, 293.66, 349.23, 440.00, 523.25, 440.00, 349.23];
+    // Happy Birthday Melody Notes
+const pianoMelody = [
+  264, 264, 297, 264, 352, 330, // Hap-py birth-day to you
+  264, 264, 297, 264, 396, 352, // Hap-py birth-day to you
+  264, 264, 528, 440, 352, 330, 297, // Hap-py birth-day dear Fa-ria
+  466, 466, 440, 352, 396, 352  // Hap-py birth-day to you
+];
     function toggleRomanticBGM() {
       getAudioContext();
       const txt = document.getElementById('audioText');
