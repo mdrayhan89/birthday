@@ -38,32 +38,33 @@
       background-color: #070510;
       color: #f1f5f9;
       overflow-x: hidden;
+      transform: translateZ(0); /* Hardware Acceleration for Lag Fix */
     }
 
     .glass-panel {
       background: rgba(18, 12, 32, 0.65);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       border: 1px solid rgba(232, 180, 184, 0.2);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(201, 117, 130, 0.1);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     }
 
     .glow-text-rose {
-      text-shadow: 0 0 15px rgba(232, 180, 184, 0.6), 0 0 30px rgba(201, 117, 130, 0.4);
+      text-shadow: 0 0 12px rgba(232, 180, 184, 0.5);
     }
 
     .memory-card {
-      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
     }
     .memory-card:hover {
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-5px);
       border-color: rgba(232, 180, 184, 0.6);
-      box-shadow: 0 15px 35px rgba(201, 117, 130, 0.3);
     }
 
     @keyframes heartbeatSlow {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
+      50% { transform: scale(1.06); }
     }
     .animate-heartbeat {
       animation: heartbeatSlow 2.5s infinite ease-in-out;
@@ -71,9 +72,7 @@
 
     @keyframes romanticFlicker {
       0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
-      25% { transform: scale(1.1) rotate(1deg); opacity: 1; }
       50% { transform: scale(0.95) rotate(-2deg); opacity: 0.85; }
-      75% { transform: scale(1.05) rotate(2deg); opacity: 0.98; }
     }
     .flame-animation {
       animation: romanticFlicker 1.2s infinite ease-in-out;
@@ -99,7 +98,7 @@
   </div>
 
   <!-- ACT 1: STARLIGHT ENTRANCE MODAL -->
-  <div id="entranceModal" class="fixed inset-0 z-50 flex items-center justify-center bg-midnight/95 backdrop-blur-3xl p-4 transition-all duration-1000">
+  <div id="entranceModal" class="fixed inset-0 z-50 flex items-center justify-center bg-midnight/95 backdrop-blur-2xl p-4 transition-all duration-700">
     <div class="glass-panel max-w-lg w-full p-8 sm:p-10 rounded-3xl text-center relative border border-roseGold/30 shadow-2xl">
       
       <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-rose-500/10 flex items-center justify-center border border-roseGold/40 animate-heartbeat">
@@ -193,7 +192,7 @@
             </div>
           </div>
           <p class="text-slate-300 text-sm font-bangla leading-relaxed line-clamp-2">
-            "চুলে ওই ছোট্ট ফুলটা গুঁজে যখন তুমি হাসो, তখন মনে হয় আমার পুরো পৃথিবীটা বুঝি থেমে গেছে..."
+            "চুলে ওই ছোট্ট ফুলটা গুঁজে যখন তুমি হাসো, তখন মনে হয় আমার পুরো পৃথিবীটা বুঝি থেমে গেছে..."
           </p>
           <div id="letter2" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
             "মাথায় ওই সুন্দর ফুলটা গুঁজে যখন তুমি মুচকি হাসো, আমার মনে হয় পৃথিবীর যেকোনো ফুলের চেয়েও সুন্দর তোমার এই রূপ। তোমার মিষ্টি অভিমান আর হাসি আমার সারাদিনের ক্লান্তি দূর করে দেয়।"
@@ -234,7 +233,7 @@
             "তোমার এই অবুঝ এক্সপ্রেশনগুলোই আমাকে বারবার নতুন করে তোমার প্রেমে ফেলে..."
           </p>
           <div id="letter4" class="hidden mt-4 pt-4 border-t border-roseGold/20 text-roseGold/90 font-bangla text-sm leading-relaxed italic">
-            "তোমাকে ভালোবেসে যে 'পিচ্চি' বলে ডাকি, তার আসল కారణ তোমার এই নিষ্পাপ বাচ্চা বাচ্চা আচরণগুলো। সারাজীবন আমার এই কিউট পিচ্চি হয়েই থেকো, ঠিক আছে?"
+            "তোমাকে ভালোবেসে যে 'পিচ্চি' বলে ডাকি, তার আসল কারণ তোমার এই নিষ্পাপ বাচ্চা বাচ্চা আচরণগুলো। সারাজীবন আমার এই কিউট পিচ্চি হয়েই থেকো, ঠিক আছে?"
           </div>
         </div>
 
@@ -279,30 +278,56 @@
       </div>
     </section>
 
-    <!-- ACT 3: VIDEO APOLOGY & EMOTIONAL SORRY SECTION (REPLACING GAME) -->
+    <!-- ACT 3: VIDEO & UNLOCKABLE SECRET LETTER -->
     <section class="mb-24 glass-panel rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden border border-roseGold/30 shadow-2xl">
       <div class="mb-6">
-        <span class="text-xs font-handwritten text-softGold tracking-widest uppercase">Act III • Special Video & Apology</span>
+        <span class="text-xs font-handwritten text-softGold tracking-widest uppercase">Act III • Special Video & Secret Letter</span>
         <h2 class="text-2xl sm:text-4xl font-serif text-roseGold glow-text-rose mt-1">
-          🥺 আমার পিচ্চির জন্য একটি বিশেষ কথা ও ক্ষমা প্রার্থনা
+          🥺 আমার পিচ্চির জন্য একটি বার্তা ও ক্ষমা প্রার্থনা
         </h2>
         <p class="text-slate-300 text-xs sm:text-sm font-bangla mt-2 max-w-lg mx-auto leading-relaxed">
-          জানি কখনো কখনো না বুঝেই তোমাকে অনেক কষ্ট দিয়ে ফেলি, তোমার চোখে জল নিয়ে আসি। বিশ্বাস করো, তোমার চোখের এক ফোঁটা জলও আমার কলিজা পুড়িয়ে দেয়... প্লিজ রাগ করো না, আমাকে ক্ষমা করে দিও সোনা! ❤️
+          জানি কখনো কখনো না বুঝেই তোমাকে কষ্ট দিয়ে ফেলি। তোমার চোখের এক ফোঁটা জলও আমার বুক ভাসিয়ে দেয়... প্লিজ রাগ করো না, আমাকে ক্ষমা করে দিও সোনা! ❤️
         </p>
       </div>
 
       <!-- Video Container -->
-      <div class="max-w-md mx-auto rounded-2xl overflow-hidden border border-roseGold/40 shadow-2xl bg-black/60 relative">
+      <div class="max-w-md mx-auto rounded-2xl overflow-hidden border border-roseGold/40 shadow-2xl bg-black/60 relative mb-8">
         <video controls class="w-full h-auto max-h-[400px] object-cover">
           <source src="video6309727941928428225.mp4" type="video/mp4">
           আপনার ব্রাউজার ভিডিওটি সাপোর্ট করছে না।
         </video>
       </div>
 
-      <div class="mt-6 p-4 bg-rose-950/30 rounded-2xl border border-roseGold/20 max-w-lg mx-auto">
-        <p class="text-roseGold/90 font-bangla text-sm italic">
-          "তোমার ওই মিষ্টি মুখে কান্নার দাগ দেখার চেয়ে আমার মরে যাওয়া অনেক ভালো। হাজারটা ভুল হলেও নিজের এই পাগলিটাকে কখনো কাঁদতে দিতে চাই না। I'm so sorry, my little princess!"
-        </p>
+      <!-- UNIQUE CLICK-TO-UNLOCK SECRET LETTER BOX -->
+      <div class="max-w-xl mx-auto">
+        <div id="secretLetterBox" onclick="openSecretLetter()" class="glass-panel p-6 sm:p-8 rounded-3xl border border-roseGold/40 cursor-pointer hover:border-roseGold hover:scale-[1.01] transition-all duration-300 relative group shadow-2xl">
+          
+          <div id="secretBoxCover" class="flex flex-col items-center justify-center space-y-3">
+            <div class="w-14 h-14 rounded-full bg-rose-500/20 flex items-center justify-center border border-roseGold/50 group-hover:scale-110 transition-transform">
+              <i class="fas fa-envelope-open-text text-2xl text-roseGold"></i>
+            </div>
+            <h3 class="text-xl font-bold font-bangla text-rose-200">
+              ✉️ "আমার না বলা কিছু কথা..." (এখানে টাচ করো)
+            </h3>
+            <p class="text-xs font-bangla text-slate-400">
+              বক্সটিতে ক্লিক করে আমার গোপনীয় চিঠিটি খুলে পড়ো... ✨
+            </p>
+          </div>
+
+          <!-- Revealed Secret Message -->
+          <div id="secretLetterContent" class="hidden text-left font-bangla text-roseGold/90 leading-relaxed text-sm sm:text-base pt-2">
+            <div class="flex items-center space-x-2 text-softGold font-bold mb-3 border-b border-roseGold/20 pb-2">
+              <i class="fas fa-heart text-rose-400"></i>
+              <span>ফারিয়ার জন্য আমার হৃদয়ের গোপন বার্তা:</span>
+            </div>
+            <!-- এখানে আপনার নিজস্ব কথাগুলো লিখতে পারবেন -->
+            <p id="secretLetterText" class="italic whitespace-pre-line text-slate-200 leading-relaxed">
+              প্রিয় ফারিয়া, 
+              তোমার হাসিটাই আমার পুরো পৃথিবীর সবচেয়ে বড় সম্পদ। শত ভুল-বোঝাবুঝির মাঝেও তোমাকে হারানো আমার জন্য সবচেয়ে বড় ভয়। তোমাকে কষ্ট দেওয়ার কোনো উদ্দেশ্য আমার থাকে না, পিচ্চি। তোমার এই বিশেষ দিনে শুধু একটাই প্রার্থনা—আমাদের বন্ধন যেন সব বাঁধাকে জয় করে চিরকাল অমলিন থাকে। শুভ জন্মদিন আমার রাজকন্যা! ❤️
+            </p>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -446,7 +471,7 @@
 
   <script>
     /* ===================================================
-       1. STARFIELD BACKGROUND CANVAS
+       1. STARFIELD BACKGROUND CANVAS (OPTIMIZED FOR NO LAG)
        =================================================== */
     const starCanvas = document.getElementById('starfieldCanvas');
     const sCtx = starCanvas.getContext('2d');
@@ -463,29 +488,22 @@
       constructor() {
         this.x = Math.random() * starCanvas.width;
         this.y = Math.random() * starCanvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.alpha = Math.random() * 0.8 + 0.2;
-        this.speed = Math.random() * 0.02 + 0.005;
-      }
-      update() {
-        this.alpha += Math.sin(Date.now() * this.speed) * 0.01;
+        this.size = Math.random() * 1.8 + 0.5;
+        this.alpha = Math.random() * 0.7 + 0.3;
       }
       draw() {
-        sCtx.save();
-        sCtx.globalAlpha = Math.abs(this.alpha);
-        sCtx.fillStyle = '#e8b4b8';
+        sCtx.fillStyle = `rgba(232, 180, 184, ${this.alpha})`;
         sCtx.beginPath();
         sCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         sCtx.fill();
-        sCtx.restore();
       }
     }
 
-    for (let i = 0; i < 90; i++) stars.push(new Star());
+    for (let i = 0; i < 50; i++) stars.push(new Star());
 
     function animateStars() {
       sCtx.clearRect(0, 0, starCanvas.width, starCanvas.height);
-      stars.forEach(s => { s.update(); s.draw(); });
+      stars.forEach(s => s.draw());
       requestAnimationFrame(animateStars);
     }
     animateStars();
@@ -514,7 +532,22 @@
     }
 
     /* ===================================================
-       4. CANDLE BLOW & CONFETTI
+       4. SECRET LETTER UNLOCK FUNCTION
+       =================================================== */
+    function openSecretLetter() {
+      const cover = document.getElementById('secretBoxCover');
+      const content = document.getElementById('secretLetterContent');
+      
+      if (content.classList.contains('hidden')) {
+        cover.classList.add('hidden');
+        content.classList.remove('hidden');
+        triggerHeartConfetti();
+        playSoftTone(523.25);
+      }
+    }
+
+    /* ===================================================
+       5. CANDLE BLOW & CONFETTI
        =================================================== */
     let isBlown = false;
     function blowRomanticCandle() {
@@ -542,15 +575,15 @@
 
     function triggerHeartConfetti() {
       confetti({
-        particleCount: 100,
-        spread: 80,
+        particleCount: 70,
+        spread: 70,
         origin: { y: 0.6 },
         colors: ['#e8b4b8', '#c97582', '#f7d070']
       });
     }
 
     /* ===================================================
-       5. PHOTO MODAL
+       6. PHOTO MODAL
        =================================================== */
     function openPhotoModal(src, caption) {
       document.getElementById('modalPhotoImg').src = src;
@@ -563,7 +596,7 @@
     }
 
     /* ===================================================
-       6. HAPPY BIRTHDAY MELODY SYNTHESIZER
+       7. HAPPY BIRTHDAY MELODY SYNTHESIZER
        =================================================== */
     let audioCtx = null;
     let isBgmPlaying = false;
@@ -575,14 +608,14 @@
       }
     }
 
-    function playSoftTone(freq, duration = 0.4) {
+    function playSoftTone(freq, duration = 0.35) {
       try {
         getAudioContext();
         let osc = audioCtx.createOscillator();
         let gain = audioCtx.createGain();
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
@@ -591,13 +624,10 @@
       } catch(e){}
     }
 
-    // "Happy Birthday To You" Note Frequencies (Hz)
-    // C4=261.63, D4=293.66, E4=329.63, F4=349.23, G4=392.00, A4=440.00, C5=523.25
     const hbdNotes = [
-      { f: 261.63, d: 0.3 }, { f: 261.63, d: 0.3 }, { f: 293.66, d: 0.6 }, { f: 261.63, d: 0.6 }, { f: 349.23, d: 0.6 }, { f: 329.63, d: 1.0 },
-      { f: 261.63, d: 0.3 }, { f: 261.63, d: 0.3 }, { f: 293.66, d: 0.6 }, { f: 261.63, d: 0.6 }, { f: 392.00, d: 0.6 }, { f: 349.23, d: 1.0 },
-      { f: 261.63, d: 0.3 }, { f: 261.63, d: 0.3 }, { f: 523.25, d: 0.6 }, { f: 440.00, d: 0.6 }, { f: 349.23, d: 0.6 }, { f: 329.63, d: 0.6 }, { f: 293.66, d: 1.0 },
-      { f: 466.16, d: 0.3 }, { f: 466.16, d: 0.3 }, { f: 440.00, d: 0.6 }, { f: 349.23, d: 0.6 }, { f: 392.00, d: 0.6 }, { f: 349.23, d: 1.2 }
+      { f: 261.63, d: 0.3 }, { f: 261.63, d: 0.3 }, { f: 293.66, d: 0.5 }, { f: 261.63, d: 0.5 }, { f: 349.23, d: 0.5 }, { f: 329.63, d: 0.9 },
+      { f: 261.63, d: 0.3 }, { f: 261.63, d: 0.3 }, { f: 293.66, d: 0.5 }, { f: 261.63, d: 0.5 }, { f: 392.00, d: 0.5 }, { f: 349.23, d: 0.9 },
+      { f: 261.63, d: 0.3 }, { f: 261.63, d: 0.3 }, { f: 523.25, d: 0.5 }, { f: 440.00, d: 0.5 }, { f: 349.23, d: 0.5 }, { f: 329.63, d: 0.5 }, { f: 293.66, d: 0.9 }
     ];
 
     function toggleRomanticBGM() {
@@ -626,9 +656,9 @@
         noteIndex++;
         if (noteIndex >= hbdNotes.length) {
           noteIndex = 0;
-          bgmTimer = setTimeout(playNext, 1200); // Pause between loops
+          bgmTimer = setTimeout(playNext, 1000);
         } else {
-          bgmTimer = setTimeout(playNext, note.d * 1000 + 80);
+          bgmTimer = setTimeout(playNext, note.d * 1000 + 60);
         }
       }
       playNext();
