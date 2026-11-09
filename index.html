@@ -38,7 +38,7 @@
       background-color: #070510;
       color: #f1f5f9;
       overflow-x: hidden;
-      transform: translateZ(0); /* Hardware Acceleration for Lag Fix */
+      transform: translateZ(0);
     }
 
     .glass-panel {
@@ -84,7 +84,7 @@
     ::-webkit-scrollbar-thumb { background: #c97582; border-radius: 10px; }
   </style>
 </head>
-<body class="relative min-h-screen select-none">
+<body class="relative min-h-screen select-none pb-20">
 
   <!-- Background Particle Stars Canvas -->
   <canvas id="starfieldCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
@@ -97,36 +97,8 @@
     </button>
   </div>
 
-  <!-- ACT 1: STARLIGHT ENTRANCE MODAL -->
-  <div id="entranceModal" class="fixed inset-0 z-50 flex items-center justify-center bg-midnight/95 backdrop-blur-2xl p-4 transition-all duration-700">
-    <div class="glass-panel max-w-lg w-full p-8 sm:p-10 rounded-3xl text-center relative border border-roseGold/30 shadow-2xl">
-      
-      <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-rose-500/10 flex items-center justify-center border border-roseGold/40 animate-heartbeat">
-        <i class="fas fa-headphones text-3xl text-roseGold"></i>
-      </div>
-
-      <p class="font-handwritten text-xl text-roseGold mb-1">A Special Birthday Surprise for Faria</p>
-      <h1 class="text-3xl sm:text-4xl font-extrabold font-serif text-white mb-4 tracking-tight glow-text-rose">
-        আমার "পিচ্চি"র জন্মদিনে... ❤️
-      </h1>
-      
-      <p class="text-slate-300 text-sm sm:text-base font-bangla leading-relaxed mb-8">
-        হেডফোন দুটি কানে গুঁজে নাও। তোমার জন্য তৈরি করা এই ছোট মিষ্টি জগতের গভীরে প্রবেশ করতে নিচের বাটনটিতে টাচ করো... ✨
-      </p>
-
-      <button onclick="enterStarlightWorld()" class="w-full py-4 bg-gradient-to-r from-deepRose via-rose-500 to-roseGold text-white font-bold rounded-2xl shadow-xl shadow-rose-900/40 hover:scale-[1.02] active:scale-95 transition-all font-bangla text-lg">
-        আমাদের সুন্দর জগতে প্রবেশ করো 🌹
-      </button>
-
-      <div class="mt-5 text-xs text-roseGold/60 font-bangla">
-        নিবেদনে: যে তোমাকে সবসময় আগলে রাখতে চায় 💖
-      </div>
-    </div>
-  </div>
-
-
-  <!-- MAIN EXPERIENCE CONTAINER -->
-  <div id="mainContent" class="opacity-0 transition-opacity duration-1000 relative z-10 max-w-5xl mx-auto px-4 pt-12 pb-24">
+  <!-- MAIN EXPERIENCE CONTAINER (Directly Visible - No Black Screen Bug) -->
+  <div id="mainContent" class="relative z-10 max-w-5xl mx-auto px-4 pt-12 pb-24">
 
     <!-- HERO SECTION -->
     <header class="text-center mb-20 relative">
@@ -320,7 +292,6 @@
               <i class="fas fa-heart text-rose-400"></i>
               <span>ফারিয়ার জন্য আমার হৃদয়ের গোপন বার্তা:</span>
             </div>
-            <!-- এখানে আপনার নিজস্ব কথাগুলো লিখতে পারবেন -->
             <p id="secretLetterText" class="italic whitespace-pre-line text-slate-200 leading-relaxed">
               প্রিয় ফারিয়া, 
               তোমার হাসিটাই আমার পুরো পৃথিবীর সবচেয়ে বড় সম্পদ। শত ভুল-বোঝাবুঝির মাঝেও তোমাকে হারানো আমার জন্য সবচেয়ে বড় ভয়। তোমাকে কষ্ট দেওয়ার কোনো উদ্দেশ্য আমার থাকে না, পিচ্চি। তোমার এই বিশেষ দিনে শুধু একটাই প্রার্থনা—আমাদের বন্ধন যেন সব বাঁধাকে জয় করে চিরকাল অমলিন থাকে। শুভ জন্মদিন আমার রাজকন্যা! ❤️
@@ -471,7 +442,7 @@
 
   <script>
     /* ===================================================
-       1. STARFIELD BACKGROUND CANVAS (OPTIMIZED FOR NO LAG)
+       1. STARFIELD BACKGROUND CANVAS (OPTIMIZED)
        =================================================== */
     const starCanvas = document.getElementById('starfieldCanvas');
     const sCtx = starCanvas.getContext('2d');
@@ -509,17 +480,7 @@
     animateStars();
 
     /* ===================================================
-       2. STARLIGHT ENTRANCE
-       =================================================== */
-    function enterStarlightWorld() {
-      toggleRomanticBGM();
-      document.getElementById('entranceModal').classList.add('opacity-0', 'pointer-events-none');
-      document.getElementById('mainContent').classList.remove('opacity-0');
-      triggerHeartConfetti();
-    }
-
-    /* ===================================================
-       3. INTERACTIVE TIME CAPSULE LETTERS
+       2. INTERACTIVE TIME CAPSULE LETTERS
        =================================================== */
     function toggleLetter(id) {
       const elem = document.getElementById(id);
@@ -532,7 +493,7 @@
     }
 
     /* ===================================================
-       4. SECRET LETTER UNLOCK FUNCTION
+       3. SECRET LETTER UNLOCK FUNCTION
        =================================================== */
     function openSecretLetter() {
       const cover = document.getElementById('secretBoxCover');
@@ -547,7 +508,7 @@
     }
 
     /* ===================================================
-       5. CANDLE BLOW & CONFETTI
+       4. CANDLE BLOW & CONFETTI
        =================================================== */
     let isBlown = false;
     function blowRomanticCandle() {
@@ -583,7 +544,7 @@
     }
 
     /* ===================================================
-       6. PHOTO MODAL
+       5. PHOTO MODAL
        =================================================== */
     function openPhotoModal(src, caption) {
       document.getElementById('modalPhotoImg').src = src;
@@ -596,7 +557,7 @@
     }
 
     /* ===================================================
-       7. HAPPY BIRTHDAY MELODY SYNTHESIZER
+       6. HAPPY BIRTHDAY MELODY SYNTHESIZER
        =================================================== */
     let audioCtx = null;
     let isBgmPlaying = false;
