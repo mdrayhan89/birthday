@@ -152,7 +152,7 @@
         শুভ জন্মদিন আমার ভালোবাসার রাজকন্যা! 🥰❤️
       </p>
       <p class="mt-4 text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-bangla">
-        তোমার হাসির প্রতিটি ঝলক আমার জীবনকে রঙিন করে তোলে। তোমার এই বিশেষ দিনে , আমার হৃদয়ের অনুভূতির প্রতিটি কণা সাজিয়ে দিয়েছি এখানে...
+        তোমার হাসির প্রতিটি ঝলক আমার জীবনকে রঙিন করে তোলে। তোমার এই বিশেষ দিনে, আমার হৃদয়ের অনুভূতির প্রতিটি কণা সাজিয়ে দিয়েছি এখানে...
       </p>
     </header>
 
@@ -488,6 +488,53 @@
       </div>
     </section>
 
+    <!-- ACT VI: FUTURE DREAM & LAST WISH (আমার জীবনের শেষ ইচ্ছে) -->
+    <section class="mb-16 glass-panel rounded-3xl p-8 sm:p-12 text-center relative border border-roseGold/40 shadow-2xl bg-gradient-to-b from-rose-950/20 via-midnight to-midnight">
+      <div class="mb-10">
+        <span class="text-xs font-handwritten text-softGold tracking-widest uppercase">Act VI • Future Dream & Last Wish</span>
+        <h2 class="text-3xl sm:text-5xl font-serif text-roseGold glow-text-rose mt-2">
+          💍 আমার জীবনের শেষ ইচ্ছে (Future Bride)
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base font-bangla mt-3 max-w-2xl mx-auto leading-relaxed">
+          লাল বেনারসি আর গহনায় তোমাকেই সাজিয়ে একদিন আমার জীবনসঙ্গিনী, আমার ঘরের বউ করে নিয়ে আসার স্বপ্ন দেখি। সারাজীবন এভাবেই তোমাকে রানীর মতো হাসি-খুশিতে আগলে রাখব, পিচ্চি! ❤️
+        </p>
+      </div>
+
+      <!-- 3 Special Bridal Photos Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
+        
+        <!-- Bridal Photo 1 -->
+        <div class="glass-panel p-3 rounded-2xl border border-roseGold/40 cursor-pointer memory-card" onclick="openPhotoModal('1000022923.jpg', 'লাল বেনারসিতে আমার হবু বৌ ❤️')">
+          <div class="h-80 w-full rounded-xl overflow-hidden mb-3 bg-black">
+            <img src="1000022923.jpg" alt="Bridal Faria 1" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=My+Bride+1'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">My Future Bride 🌹</p>
+        </div>
+
+        <!-- Bridal Photo 2 -->
+        <div class="glass-panel p-3 rounded-2xl border border-roseGold/40 cursor-pointer memory-card" onclick="openPhotoModal('1000022920.jpg', 'আমার ঘরের রাজকন্যা 🌸')">
+          <div class="h-80 w-full rounded-xl overflow-hidden mb-3 bg-black">
+            <img src="1000022920.jpg" alt="Bridal Faria 2" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=My+Bride+2'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">My Queen Forever ✨</p>
+        </div>
+
+        <!-- Bridal Photo 3 -->
+        <div class="glass-panel p-3 rounded-2xl border border-roseGold/40 cursor-pointer memory-card" onclick="openPhotoModal('1000022922.jpg', 'সারাজীবনের সুখের ঠিকানা 🥰')">
+          <div class="h-80 w-full rounded-xl overflow-hidden mb-3 bg-black">
+            <img src="1000022922.jpg" alt="Bridal Faria 3" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x500/c97582/ffffff?text=My+Bride+3'">
+          </div>
+          <p class="text-center font-handwritten text-roseGold text-lg">My Home & Happiness 💖</p>
+        </div>
+
+      </div>
+
+      <!-- Emotional Last Wish Message Box -->
+      <div class="max-w-2xl mx-auto p-6 bg-black/60 rounded-2xl border border-roseGold/30 text-roseGold font-bangla text-base sm:text-lg leading-relaxed shadow-xl italic">
+        "আল্লাহর কাছে একটাই চাওয়া ও প্রার্থনা—আজ যে তোকে জন্মদিনে এত ভালোবাসছি, আগামী দিনে এই লাল বেনারসি পরিহিত বৌ সাজেই যেন তোকে আমার ঘরে নিয়ে আসতে পারি। তোর মুখে এই হাসিটা সারা জীবন দেখার দায়িত্ব আমার। তোকে অনেক ভালোবাসি, সোনা!"
+      </div>
+    </section>
+
   </div>
 
   <!-- FULLSCREEN PHOTO MODAL -->
@@ -740,12 +787,13 @@
     }
 
     // Happy Birthday Melody Notes
-const pianoMelody = [
-  264, 264, 297, 264, 352, 330, // Hap-py birth-day to you
-  264, 264, 297, 264, 396, 352, // Hap-py birth-day to you
-  264, 264, 528, 440, 352, 330, 297, // Hap-py birth-day dear Fa-ria
-  466, 466, 440, 352, 396, 352  // Hap-py birth-day to you
-];
+    const pianoMelody = [
+      264, 264, 297, 264, 352, 330, // Hap-py birth-day to you
+      264, 264, 297, 264, 396, 352, // Hap-py birth-day to you
+      264, 264, 528, 440, 352, 330, 297, // Hap-py birth-day dear Fa-ria
+      466, 466, 440, 352, 396, 352  // Hap-py birth-day to you
+    ];
+
     function toggleRomanticBGM() {
       getAudioContext();
       const txt = document.getElementById('audioText');
